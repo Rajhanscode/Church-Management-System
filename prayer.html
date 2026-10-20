@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Prayer Request</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Grace Church</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="prayer.html">Prayer Request</a>
+            <a href="admin.html">Admin</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="form-box">
+            <h2 style="margin-bottom: 15px; text-align: center;">Prayer Request Form</h2>
+            <form id="prayerForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" required placeholder="Enter full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="contact">Phone or Email</label>
+                    <input type="text" id="contact" required placeholder="Enter phone or email">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Your Prayer Request</label>
+                    <textarea id="message" rows="4" required placeholder="Write your request here"></textarea>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%;">Submit Request</button>
+            </form>
+            <p id="successMsg" style="color: green; text-align: center; margin-top: 15px; display: none;">
+                Request submitted successfully!
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Grace Community Church. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

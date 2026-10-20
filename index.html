@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grace Community | Church Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="ambient-glow"></div>
+
+  <header>
+    <div class="brand">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2v20M7 8h10"/>
+      </svg>
+      Grace Community ChMS
+    </div>
+    <nav>
+      <a href="index.html" class="active">Public Portal</a>
+      <a href="admin.html">Admin Dashboard</a>
+      <a href="#events">Services</a>
+      <button type="button" class="btn-primary" data-modal="prayerModal">
+        <span>Submit Request</span>
+      </button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <span class="badge">Unified Operations Platform</span>
+    <h1>Faith Driven.<br>Data Streamlined.</h1>
+    <p>A centralized system for prayer requests, service scheduling, and community oversight.</p>
+    <div>
+      <button type="button" class="btn-primary" data-modal="prayerModal">Make a Prayer Request</button>
+      <a href="#events" class="btn-secondary">View Scheduled Gatherings</a>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Registered Members</div>
+        <div class="stat-val" id="statMembers">1,480</div>
+        <span style="color: #10b981; font-size: 0.8rem;">Active Congregation</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Answered Prayers</div>
+        <div class="stat-val" id="statPrayersAnswered">0</div>
+        <span style="color: var(--accent-primary); font-size: 0.8rem;">Updated Live</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Upcoming Gatherings</div>
+        <div class="stat-val" id="statEventsCount">0</div>
+        <span style="color: var(--text-muted); font-size: 0.8rem;">This Week</span>
+      </div>
+    </div>
+
+    <section id="events" style="margin-top: 60px;">
+      <div style="margin-bottom: 20px;">
+        <h2 style="font-size: 1.8rem; font-weight: 800;">Worship Schedule & Events</h2>
+        <p style="color: var(--text-muted);">Real-time service directory synchronized across all devices</p>
+      </div>
+      <div class="cards-grid" id="eventsContainer">
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="prayerModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-weight: 700;">Submit a Prayer Request</h3>
+        <button type="button" class="modal-close" data-close="prayerModal">&times;</button>
+      </div>
+      <form id="publicPrayerForm">
+        <div class="form-group">
+          <label for="reqName">Full Name</label>
+          <input type="text" id="reqName" class="form-control" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label for="reqContact">Email or Phone Number</label>
+          <input type="text" id="reqContact" class="form-control" placeholder="name@domain.com or phone" required>
+        </div>
+        <div class="form-group">
+          <label for="reqCategory">Category</label>
+          <select id="reqCategory" class="form-control">
+            <option value="Healing">Health & Healing</option>
+            <option value="Family">Family & Relationships</option>
+            <option value="Guidance">Spiritual Guidance</option>
+            <option value="Thanksgiving">Thanksgiving / Praise</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="reqMessage">Prayer Description</label>
+          <textarea id="reqMessage" class="form-control" placeholder="Describe your prayer needs..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+          Submit to Pastoral Team
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">Operation completed successfully</div>
+
+  <footer>
+    <p>&copy; 2026 Grace Community Church Management System. All rights reserved.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

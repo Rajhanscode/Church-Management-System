@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Grace Community</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="ambient-glow"></div>
+
+  <header>
+    <div class="brand">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <path d="M3 9h18M9 21V9"/>
+      </svg>
+      Admin Control Console
+    </div>
+    <nav>
+      <a href="index.html">Public View</a>
+      <a href="admin.html" class="active">Management</a>
+      <button type="button" class="btn-primary" data-modal="eventModal">
+        <span>+ Add Event</span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Pending Requests</div>
+        <div class="stat-val" id="adminPendingCount">0</div>
+        <span style="color: var(--status-pending); font-size: 0.8rem;">Awaiting Review</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Approved Prayers</div>
+        <div class="stat-val" id="adminApprovedCount">0</div>
+        <span style="color: var(--status-approved); font-size: 0.8rem;">Published Records</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Scheduled Gatherings</div>
+        <div class="stat-val" id="adminEventsCount">0</div>
+        <span style="color: var(--accent-primary); font-size: 0.8rem;">Live on Homepage</span>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <div>
+        <h2 style="font-size: 1.6rem; font-weight: 800;">Prayer Submissions Log</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Review incoming requests and update pipeline status</p>
+      </div>
+      <input type="text" id="searchInput" class="form-control search-input" placeholder="Search by name, category, or keyword...">
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Details</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="adminPrayerTable">
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <div class="modal-overlay" id="eventModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-weight: 700;">Publish New Event</h3>
+        <button type="button" class="modal-close" data-close="eventModal">&times;</button>
+      </div>
+      <form id="createEventForm">
+        <div class="form-group">
+          <label for="eventTitle">Event Title</label>
+          <input type="text" id="eventTitle" class="form-control" placeholder="e.g. Sunday Morning Worship" required>
+        </div>
+        <div class="form-group">
+          <label for="eventTime">Date & Time</label>
+          <input type="text" id="eventTime" class="form-control" placeholder="e.g. Sunday, 10:00 AM - 11:30 AM" required>
+        </div>
+        <div class="form-group">
+          <label for="eventLocation">Location / Venue</label>
+          <input type="text" id="eventLocation" class="form-control" placeholder="Main Sanctuary or Online Stream" required>
+        </div>
+        <div class="form-group">
+          <label for="eventDesc">Summary Description</label>
+          <textarea id="eventDesc" class="form-control" placeholder="Details regarding speaker, fellowship, or agenda..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+          Save and Publish Event
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">Action updated successfully</div>
+
+  <script src="app.js"></script>
+</body>
+</html>
