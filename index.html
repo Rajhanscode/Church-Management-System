@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grace Church Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="page-wrapper">
+
+        <!-- Top Navbar -->
+        <nav class="top-navbar">
+            <button type="button" onclick="openTab('home')">Home</button>
+            <button type="button" onclick="openTab('login')">Login / Register</button>
+            <button type="button" onclick="openTab('prayer')">Prayer</button>
+            <button type="button" onclick="openTab('fathers')">Our Fathers</button>
+            <button type="button" onclick="openTab('events')">Events</button>
+            <button type="button" onclick="openTab('requests')">Prayer Requests</button>
+            <button type="button" onclick="openTab('donations')">Donations</button>
+            <button type="button" onclick="openTab('photos')">Photos</button>
+            <span class="user-status" id="userBadge">Guest</span>
+        </nav>
+
+        <!-- Header -->
+        <header class="site-header">
+            <h1>Grace Church Management System</h1>
+            <p><i>"A House of Prayer, Peace, and Community"</i></p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="content-area">
+
+            <!-- HOME TAB -->
+            <section id="home" class="tab-section">
+                <h2>Welcome to Grace Church</h2>
+                <p>
+                    Welcome to Grace Church. We are a peaceful community dedicated to faith,
+                    service, and fellowship. Everyone is welcome to join our daily prayers and Sunday gatherings.
+                </p>
+
+                <div class="panel-box">
+                    <h3><u>Church Notice</u></h3>
+                    <p>
+                        Special community breakfast will be served this Sunday after the 9:00 AM service.
+                        Please maintain silence inside the main prayer hall.
+                    </p>
+                </div>
+
+                <div class="panel-box">
+                    <h3>Current Visitors in Church</h3>
+                    <p>People currently in the church: <strong id="visitorCount">12</strong></p>
+                    <button type="button" class="action-btn" onclick="increaseVisitor()">I am in the church</button>
+                    <p id="visitorMessage"></p>
+                </div>
+            </section>
+
+            <!-- LOGIN / REGISTER TAB -->
+            <section id="login" class="tab-section hidden-tab">
+                <h2>User Login &amp; Registration</h2>
+                <p id="authMessage">You are currently browsing as Guest.</p>
+
+                <div class="two-col">
+                    <!-- Login Form -->
+                    <form id="loginForm" class="form-box" onsubmit="loginUser(event)">
+                        <h3>Login</h3>
+
+                        <label for="loginName">Username:</label>
+                        <input type="text" id="loginName" required placeholder="Enter username">
+
+                        <label for="loginPass">Password:</label>
+                        <input type="password" id="loginPass" required placeholder="Enter password">
+
+                        <button type="submit" class="action-btn">Login</button>
+                        <button type="button" class="secondary-btn" onclick="logoutUser()">Logout</button>
+                    </form>
+
+                    <!-- Register Form -->
+                    <form id="registerForm" class="form-box" onsubmit="registerUser(event)">
+                        <h3>Register</h3>
+
+                        <label for="regName">New Username:</label>
+                        <input type="text" id="regName" required placeholder="Create username">
+
+                        <label for="regPass">Create Password:</label>
+                        <input type="password" id="regPass" required placeholder="Create password">
+
+                        <button type="submit" class="action-btn">Register</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- PRAYER TAB -->
+            <section id="prayer" class="tab-section hidden-tab">
+                <h2>Prayer &amp; Service Timings</h2>
+
+                <div class="table-wrap">
+                    <table>
+                        <tr>
+                            <th>Service / Prayer</th>
+                            <th>Days</th>
+                            <th>Timing</th>
+                        </tr>
+                        <tr>
+                            <td>Morning Prayer</td>
+                            <td>Monday to Saturday</td>
+                            <td>6:30 AM - 7:30 AM</td>
+                        </tr>
+                        <tr>
+                            <td>Evening Prayer</td>
+                            <td>Monday to Saturday</td>
+                            <td>6:00 PM - 7:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td>Sunday Service</td>
+                            <td>Sunday</td>
+                            <td>9:00 AM - 11:00 AM</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3><u>YouTube Prayer Videos</u></h3>
+                <p>Replace the YouTube embed link below in index.html whenever you want to update the video.</p>
+
+                <div class="video-box">
+                    <!-- Replace src link later with any YouTube embed URL -->
+                    <iframe
+                        src="https://www.youtube.com/embed/jfKfPfyJRdk"
+                        title="Church Prayer Video"
+                        frameborder="0"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </section>
+
+            <!-- OUR FATHERS TAB -->
+            <section id="fathers" class="tab-section hidden-tab">
+                <h2>Our Fathers</h2>
+                <p>Spiritual leaders serving our church community:</p>
+
+                <div class="grid-list">
+                    <div class="panel-box">
+                        <h3>Rev. Father Thomas Mathew</h3>
+                        <p><strong>Role:</strong> Senior Parish Priest</p>
+                        <p>Serving Grace Church since 2012 and leading Sunday service and parish welfare.</p>
+                    </div>
+
+                    <div class="panel-box">
+                        <h3>Father Samuel Joseph</h3>
+                        <p><strong>Role:</strong> Associate Pastor</p>
+                        <p>Leads youth prayer meetings, choir gatherings, and evening scripture study.</p>
+                    </div>
+
+                    <div class="panel-box">
+                        <h3>Father Peter Francis</h3>
+                        <p><strong>Role:</strong> Visiting Elder</p>
+                        <p>Supports families with spiritual guidance and local charity visits.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EVENTS TAB -->
+            <section id="events" class="tab-section hidden-tab">
+                <h2>Upcoming Church Events</h2>
+
+                <!-- Search Events -->
+                <div class="panel-box">
+                    <label for="eventSearch">Search Upcoming Events:</label>
+                    <input type="text" id="eventSearch" onkeyup="displayEvents()" placeholder="Search event name...">
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Date</th>
+                                <th>Timing</th>
+                            </tr>
+                        </thead>
+                        <tbody id="eventsTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- PRAYER REQUESTS TAB -->
+            <section id="requests" class="tab-section hidden-tab">
+                <h2>Prayer Requests</h2>
+
+                <form id="prayerForm" class="form-box" onsubmit="submitPrayerRequest(event)">
+                    <label for="userName">Your Name:</label>
+                    <input type="text" id="userName" required placeholder="Enter your name">
+
+                    <label for="prayerText">Your Prayer Request:</label>
+                    <textarea id="prayerText" rows="4" required placeholder="Write your prayer request here..."></textarea>
+
+                    <button type="submit" class="action-btn">Submit</button>
+                </form>
+
+                <div id="requestsList"></div>
+            </section>
+
+            <!-- DONATIONS TAB -->
+            <section id="donations" class="tab-section hidden-tab">
+                <h2>Donations</h2>
+
+                <form id="donationForm" class="form-box" onsubmit="addDonation(event)">
+                    <label for="donationAmount">Donation Amount (Numbers only):</label>
+                    <input
+                        type="number"
+                        id="donationAmount"
+                        min="1"
+                        step="1"
+                        inputmode="numeric"
+                        onkeydown="allowOnlyNumbers(event)"
+                        required
+                        placeholder="Enter amount">
+
+                    <button type="submit" class="action-btn">Add Donation</button>
+                </form>
+
+                <div class="panel-box">
+                    <h3>Total Revenue</h3>
+                    <p class="total-amount">Rs. <span id="totalRevenue">5000</span></p>
+                    <p><i>Thank you for supporting Grace Church.</i></p>
+                </div>
+            </section>
+
+            <!-- PHOTOS TAB -->
+            <section id="photos" class="tab-section hidden-tab">
+                <h2>Church Photos</h2>
+                <p>Add images inside the <code>photos/</code> folder and list them in script.js.</p>
+
+                <div id="photoGallery" class="photo-grid"></div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <p>Grace Church Management System</p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
